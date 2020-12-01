@@ -1,0 +1,30 @@
+{
+  "name": "wol-udp-experiments",
+  "version": "1.0.0",
+  "description": "WoL magic packet building in Node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "ts-node index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YashdalfTheGray/wol-udp-experiments.git"
+  },
+  "keywords": [
+    "wol",
+    "udp"
+  ],
+  "author": "Yash Kulshrestha",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/YashdalfTheGray/wol-udp-experiments/issues"
+  },
+  "homepage": "https://github.com/YashdalfTheGray/wol-udp-experiments#readme",
+  "devDependencies": {
+    "ts-node": "^9.0.0",
+    "tslint": "^6.1.3",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "^4.1.2"
+  }
+}
