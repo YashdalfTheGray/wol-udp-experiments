@@ -12,3 +12,11 @@ server.on('error', (err) => {
   console.error(err);
   server.close();
 });
+
+server.on('close', () => {
+  console.log('\nsocket closed');
+});
+
+process.on('SIGINT', () => {
+  server.close();
+});
