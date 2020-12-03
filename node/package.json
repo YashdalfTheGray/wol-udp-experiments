@@ -4,7 +4,8 @@
   "description": "WoL magic packet building in Node.js",
   "main": "index.js",
   "scripts": {
-    "listener": "ts-node listener.ts"
+    "listener": "ts-node listener.ts",
+    "transmitter": "ts-node transmitter.ts"
   },
   "repository": {
     "type": "git",
