@@ -17,18 +17,20 @@ const readLineConstantly = () => {
       process.exit();
     }
 
-    console.log(
-      `The given MAC address was ${mac} and it is ${
-        buildMagicPacket(mac) ? 'valid' : 'invalid'
-      }`
-    );
+    console.log(`The given MAC address was ${mac}`);
+    console.log(JSON.stringify(buildMagicPacket(mac)));
     readLineConstantly();
   });
 };
 
 const buildMagicPacket = (macAddress: string) => {
   const macRegex = /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/;
-  return macRegex.test(macAddress);
+
+  return Buffer.from(
+    new Array(6)
+      .fill(0xff)
+      .concat(new Array(16).fill(macAddress.split(/[:-]/)).flat())
+  );
 };
 
 readLineConstantly();
