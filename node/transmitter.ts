@@ -17,7 +17,11 @@ const readLineConstantly = () => {
       process.exit();
     }
 
-    console.log(`The given MAC address was ${mac}`);
+    console.log(
+      `The given MAC address was ${mac} and it is ${
+        buildMagicPacket(mac) ? 'valid' : 'invalid'
+      }`
+    );
     readLineConstantly();
   });
 };
