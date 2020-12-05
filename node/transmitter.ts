@@ -1,9 +1,12 @@
+import * as dgram from 'dgram';
 import * as readline from 'readline';
 
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
+
+const transmitter = dgram.createSocket('udp4');
 
 rl.on('SIGINT', () => {
   rl.close();
