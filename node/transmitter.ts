@@ -1,6 +1,10 @@
 import * as dgram from 'dgram';
 import * as readline from 'readline';
 
+import { readFromEnvironment } from './common';
+
+const { host, port } = readFromEnvironment();
+
 const isValidMacAddress = (mac: string) =>
   /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/.test(mac);
 
@@ -24,7 +28,7 @@ const readLineConstantly = (intf: readline.Interface, sock: dgram.Socket) => {
 
     if (isValidMacAddress(mac)) {
       console.log(`The given MAC address was ${mac}`);
-      sock.send(buildMagicPacket(mac), 8000, 'localhost', (err) => {
+      sock.send(buildMagicPacket(mac), port, host, (err) => {
         if (err) {
           console.log('Something went wrong');
           console.error(err);

@@ -2,10 +2,14 @@ import * as dgram from 'dgram';
 
 import chalk from 'chalk';
 
+import { readFromEnvironment } from './common';
+
+const { host, port } = readFromEnvironment();
+
 const server = dgram.createSocket('udp4');
 
-server.bind(8000, '127.0.0.1', () => {
-  console.log(`Server started on ${chalk.green('127.0.0.1:8000')}`);
+server.bind(port, host, () => {
+  console.log(`Server started on ${chalk.green(`${host}:${port}`)}`);
 });
 
 server.on('error', (err) => {
