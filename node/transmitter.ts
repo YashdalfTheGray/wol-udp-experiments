@@ -28,6 +28,7 @@ const readLineConstantly = (intf: readline.Interface, sock: dgram.Socket) => {
         if (err) {
           console.log('Something went wrong');
           console.error(err);
+          closeAndQuit(intf, sock);
         }
       });
     } else {
@@ -37,17 +38,19 @@ const readLineConstantly = (intf: readline.Interface, sock: dgram.Socket) => {
   });
 };
 
+const closeAndQuit = (intf: readline.Interface, sock: dgram.Socket) => {
+  intf.close();
+  sock.close();
+  process.exit();
+};
+
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout,
 });
 
-rl.on('SIGINT', () => {
-  rl.close();
-  transmitter.close();
-  process.exit();
-});
+rl.on('SIGINT', () => closeAndQuit(rl, tx));
 
-const transmitter = dgram.createSocket('udp4');
+const tx = dgram.createSocket('udp4');
 
-readLineConstantly(rl, transmitter);
+readLineConstantly(rl, tx);
